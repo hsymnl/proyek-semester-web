@@ -8,12 +8,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DokterMiddleware
 {
+    /**
+     * Handle an incoming request.
+     *
+     * @param  Closure(Request): (Response)  $next
+     */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || auth()->user()->role !== 'dokter') {
-            abort(403);
-        }
-
         return $next($request);
     }
 }
